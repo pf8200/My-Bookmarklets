@@ -3,6 +3,8 @@
 
 ## Copy SD Styles
 
+> `https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference`
+
 ```javascript
 javascript:tags=[];document.querySelectorAll('th').forEach(function(x){tags.push(x.textContent);});navigator.clipboard.writeText(tags.join(", ")).then(function() {}, function(err) {alert(tags.join(", "));console.error('Async: Could not copy text: ', err);});
 ```
