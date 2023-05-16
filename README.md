@@ -1,5 +1,5 @@
 # Bookmarklets
- Vários bookmarklets uteis
+ Vários bookmarklets uteis paea a web
 
 ## Copy SD Styles
 
