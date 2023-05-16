@@ -67,22 +67,19 @@ genre: Comedy, Crime, Drama
 ```javascript
 javascript: (function () {
   var elements = {};
-  elements.title = document.querySelector(
-    "#hero-movie-Detail > section:nth-child(3) > div > div > div > div > div > p > a"
-  ).innerText;
-  elements.realizador = document.querySelector(
-    "#hero-movie-Detail > section:nth-child(5) > div > div:nth-child(1) > div > div > div > p > a"
-  ).innerText;
-  elements.sinopse = document.querySelector(
-    "div.movie-detail__section-content.block-content > div > div:nth-child(1)"
-  ).innerText;
+  elements.title = document.querySelector( "#hero-movie-Detail > section:nth-child(3) > div > div > div > div > div > p > a" ).innerText;
+  elements.Year = document.querySelector( "#hero-movie-Detail > div.movie-detail__meta > div.movie-detail__info > span:nth-child(3)" ).innerText;
+  elements.realizador = document.querySelector( "#hero-movie-Detail > section:nth-child(5) > div > div:nth-child(1) > div > div > div > p > a" ).innerText;
+  elements.sinopse = document.querySelector( "div.movie-detail__section-content.block-content > div > div:nth-child(1)" ).innerText;
   elements.elenco = Array.from(
     document.querySelectorAll(
       "#hero-movie-Detail > section:nth-child(5) > div > div:nth-child(2) > div > div > div > p > a"
     )
-  ).map(function (a) {
+  )
+    .map(function (a) {
       return a.innerText;
-    }).join(", ");
+    })
+    .join(", ");
   var output = "";
   for (var key in elements) {
     if (Array.isArray(elements[key])) {
@@ -106,9 +103,10 @@ javascript: (function () {
 
 ```console
 title: Babylon
+Year:  2022
 realizador: Damien Chazelle
 sinopse: Nos últimos anos da década de 1920, início dos anos de ouro de Hollywood, quando os EUA recuperavam da Grande Depressão, a Sétima Arte sofreu uma grande transformação: a passagem do cinema mudo ao sonoro. Nellie LaRoy (Brad Pitt) é um actor consagrado que consegue fazer essa transição com bastante sucesso. Mas, infelizmente, há muitas estrelas que se tornam dispensáveis, vendo as suas carreiras terminarem abruptamente e dando espaço a uma nova geração de actores. 
-elenco: Tobey Maguire, Brad Pitt, Samara Weaving, Jean Smart, Olivia Wilde, Margot Robbie.
+elenco: Tobey Maguire , Brad Pitt , Samara Weaving , Jean Smart , Olivia Wilde , Margot Robbie
 ```
 
 ---
@@ -116,19 +114,109 @@ elenco: Tobey Maguire, Brad Pitt, Samara Weaving, Jean Smart, Olivia Wilde, Marg
 ## Listar imagens de uma página
 
 ```javascript
-javascript:x='';for (y=0;y<document.images.length;y++){x+='<img src='+document.images[y].src+'><br>'};if(x!=''){document.write('<center>'+x+'</center>');void(document.close())}else{alert('Não existem imagens!')}
+javascript: x = "";
+for (y = 0; y < document.images.length; y++) {
+  x += "<img src=" + document.images[y].src + "><br>";
+}
+if (x != "") {
+  document.write("<center>" + x + "</center>");
+  void document.close();
+} else {
+  alert("Não existem imagens!");
+}
 ```
+
+---
 
 ## Htm Link
 
 ```javascript
-javascript: void(prompt('link to this page',unescape('<a href="') + location.href + unescape('">') + document.title + unescape('</a>')));
+javascript: void prompt(
+  "link to this page",
+  unescape('<a href="') +
+    location.href +
+    unescape('">') +
+    document.title +
+    unescape("</a>")
+);
 ```
+
+### OUTPUT
+
+```console
+<a href="https://www.imdb.com/title/tt0325805/">Amigos do Alheio (2003) - IMDb</a>
+```
+
+---
 
 ## Markdown Link
 
 ```javascript
-javascript:var %24jscomp%3D%24jscomp%7C%7C%7B%7D%3B%24jscomp.scope%3D%7B%7D%3B%24jscomp.createTemplateTagFirstArg%3Dfunction(b)%7Breturn b.raw%3Db%7D%3B%24jscomp.createTemplateTagFirstArgWithRaw%3Dfunction(b%2Ca)%7Bb.raw%3Da%3Breturn b%7D%3B(function()%7Bvar b%3D"%5B"%2Bdocument.title%2B"%5D("%2Blocation.href%2B")"%2Ca%3Ddocument.createElement("textarea")%3Ba.style.position%3D"fixed"%3Ba.style.left%3D"0"%3Ba.style.top%3D"0"%3Ba.style.width%3D"2em"%3Ba.style.height%3D"2em"%3Ba.style.padding%3D"0"%3Ba.style.border%3D"none"%3Ba.style.outline%3D"none"%3Ba.style.boxShadow%3D"none"%3Ba.style.background%3D"transparent"%3Ba.value%3Db%3Bdocument.body.appendChild(a)%3Ba.select()%3Bb%3D!1%3Btry%7Bb%3Ddocument.execCommand("copy")%7Dcatch(c)%7Bconsole.error("Failed to copy text%3A "%2Cc)%7Ddocument.body.removeChild(a)%3Bb%3Falert("Markdown link copied to clipboard!")%3Aalert("Failed to copy markdown link to clipboard")%7D)()%3Bvoid+0
+javascript: var $jscomp = $jscomp || {};
+$jscomp.scope = {};
+$jscomp.createTemplateTagFirstArg = function (b) {
+  return (b.raw = b);
+};
+$jscomp.createTemplateTagFirstArgWithRaw = function (b, a) {
+  b.raw = a;
+  return b;
+};
+(function () {
+  var b = "[" + document.title + "](" + location.href + ")",
+    a = document.createElement("textarea");
+  a.style.position = "fixed";
+  a.style.left = "0";
+  a.style.top = "0";
+  a.style.width = "2em";
+  a.style.height = "2em";
+  a.style.padding = "0";
+  a.style.border = "none";
+  a.style.outline = "none";
+  a.style.boxShadow = "none";
+  a.style.background = "transparent";
+  a.value = b;
+  document.body.appendChild(a);
+  a.select();
+  b = !1;
+  try {
+    b = document.execCommand("copy");
+  } catch (c) {
+    console.error("Failed to copy text: ", c);
+  }
+  document.body.removeChild(a);
+  b
+    ? alert("Markdown link copied to clipboard!")
+    : alert("Failed to copy markdown link to clipboard");
+})();
+```
+
+### OUTPUT
+
+```console
+[Amigos do Alheio (2003) - IMDb](https://www.imdb.com/title/tt0325805/)
+```
+
+---
+
+## copyAllLinks
+
+`https://www.imdb.com/title/tt0325805`
+
+```javascript
+javascript: (function () {
+  var b = document.querySelectorAll("a");
+  var c = [];
+  for (var a = 0; a < b.length; a++) {
+    c.push(b[a].href);
+  }
+  navigator.clipboard.writeText(c.join("\n"));
+})();
+```
+
+## List All Links
+
+```javascript
+javascript: x=open('','Z6','width=600,height=400,scrollbars,resizable,menubar'); y=document.links;with(x.document){write('<base target=_blank>'); for(z=0;z<y.length;z++){write(y[z].toString().link(y[z])+'<br>')}; void(close())}
 ```
 
 ## Github PWSH Repos
@@ -159,18 +247,6 @@ javascript:void(q=prompt('Qual é a palavra-chave?%27,%27%27));if(q)void(hn=loca
 
 ```javascript
 javascript:document.body.contentEditable = 'true'; document.designMode='on'; void 0
-```
-
-## copyAllLinks
-
-```javascript
-javascript:(function()%7Bfor(var%20b%3Ddocument.querySelectorAll(%22a%22)%2Cc%3D%5B%5D%2Ca%3D0%3Ba%3Cb.length%3Ba%2B%2B)c.push(b%5Ba%5D.href)%3Bnavigator.clipboard.writeText(c.join(%22%5Cn%22))%7D)()%3Bvoid+0
-```
-
-## List All Links
-
-```javascript
-javascript: x=open('','Z6','width=600,height=400,scrollbars,resizable,menubar'); y=document.links;with(x.document){write('<base target=_blank>'); for(z=0;z<y.length;z++){write(y[z].toString().link(y[z])+'<br>')}; void(close())}
 ```
 
 ## ImgPath
