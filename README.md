@@ -44,16 +44,16 @@ javascript:x='';for (y=0;y<document.images.length;y++){x+='<img src='+document.i
 javascript:var %24jscomp%3D%24jscomp%7C%7C%7B%7D%3B%24jscomp.scope%3D%7B%7D%3B%24jscomp.createTemplateTagFirstArg%3Dfunction(b)%7Breturn b.raw%3Db%7D%3B%24jscomp.createTemplateTagFirstArgWithRaw%3Dfunction(b%2Ca)%7Bb.raw%3Da%3Breturn b%7D%3B(function()%7Bvar b%3D"%5B"%2Bdocument.title%2B"%5D("%2Blocation.href%2B")"%2Ca%3Ddocument.createElement("textarea")%3Ba.style.position%3D"fixed"%3Ba.style.left%3D"0"%3Ba.style.top%3D"0"%3Ba.style.width%3D"2em"%3Ba.style.height%3D"2em"%3Ba.style.padding%3D"0"%3Ba.style.border%3D"none"%3Ba.style.outline%3D"none"%3Ba.style.boxShadow%3D"none"%3Ba.style.background%3D"transparent"%3Ba.value%3Db%3Bdocument.body.appendChild(a)%3Ba.select()%3Bb%3D!1%3Btry%7Bb%3Ddocument.execCommand("copy")%7Dcatch(c)%7Bconsole.error("Failed to copy text%3A "%2Cc)%7Ddocument.body.removeChild(a)%3Bb%3Falert("Markdown link copied to clipboard!")%3Aalert("Failed to copy markdown link to clipboard")%7D)()%3Bvoid+0
 ```
 
-##
+## PWSH Repos
 
 ```javascript
-
+javascript:void(open(window.location.href.replace(/^(.*)$/, '$1?tab=repositories&q=&type=source&language=powershell%27)));
 ```
 
-##
+## Show Gists
 
 ```javascript
-
+javascript:void(open(window.location.href.replace('https://', 'https://gist.')));
 ```
 
 ##
