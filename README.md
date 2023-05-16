@@ -11,6 +11,8 @@ javascript:tags=[];document.querySelectorAll('th').forEach(function(x){tags.push
 
 ## Copy Tags Anime
 
+> `https://danbooru.donmai.us/posts?page=14`
+
 ```javascript
 javascript:skip=["censor", "request", "dark skin", "dark-skin", "tanline", "cum", "speech", "tattoo", "watermark", "web address", "juice", "artist", "name", "blur", "focus", "dated", "signature", "background", "text" ];tags=[]; document.querySelectorAll('.general-tag-list .search-tag, .tag-type-general > a').forEach(function(x){t=x.textContent; for (let x in skip) {if(t.indexOf(skip[x]) != -1) return;}; tags.push(t); }); navigator.clipboard.writeText(tags.join(", ")).then(function() {}, function(err) {alert(tags.join(", "));console.error('Async: Could not copy text: ', err); });
 ```
