@@ -1,5 +1,5 @@
 # Bookmarklets
- Vários bookmarklets uteis paea a web
+ Vários bookmarklets uteis para navegar na web
 
 ## Copy SD Styles
 
