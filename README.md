@@ -60,57 +60,6 @@ genre: Comedy, Crime, Drama
 
 ---
 
-## Cine Cartaz
-
-`https://cinecartaz.publico.pt/filme/babylon-409332`
-
-```javascript
-javascript: (function () {
-  var elements = {};
-  elements.title = document.querySelector( "#hero-movie-Detail > section:nth-child(3) > div > div > div > div > div > p > a" ).innerText;
-  elements.Year = document.querySelector( "#hero-movie-Detail > div.movie-detail__meta > div.movie-detail__info > span:nth-child(3)" ).innerText;
-  elements.realizador = document.querySelector( "#hero-movie-Detail > section:nth-child(5) > div > div:nth-child(1) > div > div > div > p > a" ).innerText;
-  elements.sinopse = document.querySelector( "div.movie-detail__section-content.block-content > div > div:nth-child(1)" ).innerText;
-  elements.elenco = Array.from(
-    document.querySelectorAll(
-      "#hero-movie-Detail > section:nth-child(5) > div > div:nth-child(2) > div > div > div > p > a"
-    )
-  )
-    .map(function (a) {
-      return a.innerText;
-    })
-    .join(", ");
-  var output = "";
-  for (var key in elements) {
-    if (Array.isArray(elements[key])) {
-      output += key + ": " + JSON.stringify(elements[key]) + "\n";
-    } else {
-      output += key + ": " + elements[key] + "\n";
-    }
-  }
-  var tempInput = document.createElement("textarea");
-  tempInput.value = output;
-  document.body.appendChild(tempInput);
-  tempInput.select();
-  document.execCommand("copy");
-  document.body.removeChild(tempInput);
-  alert(output);
-  console.log("Output copied to clipboard:\n", output);
-})();
-```
-
-### OUTPUT
-
-```console
-title: Babylon
-Year:  2022
-realizador: Damien Chazelle
-sinopse: Nos últimos anos da década de 1920, início dos anos de ouro de Hollywood, quando os EUA recuperavam da Grande Depressão, a Sétima Arte sofreu uma grande transformação: a passagem do cinema mudo ao sonoro. Nellie LaRoy (Brad Pitt) é um actor consagrado que consegue fazer essa transição com bastante sucesso. Mas, infelizmente, há muitas estrelas que se tornam dispensáveis, vendo as suas carreiras terminarem abruptamente e dando espaço a uma nova geração de actores. 
-elenco: Tobey Maguire , Brad Pitt , Samara Weaving , Jean Smart , Olivia Wilde , Margot Robbie
-```
-
----
-
 ## Listar imagens de uma página
 
 ```javascript
