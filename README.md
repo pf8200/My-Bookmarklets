@@ -1,5 +1,6 @@
 # Bookmarklets
- Vários bookmarklets uteis para navegar na web
+
+Os bookmarklets são pequenos fragmentos de código JavaScript que podem ser salvos como bookmarks em seu navegador. Eles permitem que você execute ações ou modifique o conteúdo de uma página da web com um único clique. Com os bookmarklets, você pode adicionar funcionalidades personalizadas ao seu navegador preferido.
 
 ## IMDB
 
