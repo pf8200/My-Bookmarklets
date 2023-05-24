@@ -11,7 +11,7 @@ removing elements that have a non-zero zIndex, possibly for the purpose of
 decluttering the page or modifying its appearance.
 
 ```javascript
-javascript:(function()%7BArray.from(document.querySelectorAll('*')).map(ele %3D> %7Bele.style.overflow %3D 'inherit'%3BgetComputedStyle(ele).zIndex>0 %3F ele.remove() %3A null%7D)%7D)()
+javascript:(function()%7BArray.from(document.querySelectorAll('*')).map(ele %3D> %7Bele.style.overflow %3D %27inherit%27%3BgetComputedStyle(ele).zIndex>0 %3F ele.remove() %3A null%7D)%7D)()
 
 javascript:(function() {
   // This code is wrapped inside an immediately-invoked function expression (IIFE),
