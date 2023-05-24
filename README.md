@@ -431,8 +431,15 @@ Stop editing the page
 javascript: document.body.contentEditable = 'false';document.designMode = 'off';void 0
 ```
 
-##
+## H2 Tags na Consola
 
 ```javascript
+javascript:(function() {
+  var h2Tags = document.getElementsByTagName('h2');
+  for (var i = 0; i < h2Tags.length; i++) {
+    console.log(h2Tags[i].textContent.trim());
+  }
+  console.log('Total <h2> tags:', h2Tags.length);
+})();
 
 ```
