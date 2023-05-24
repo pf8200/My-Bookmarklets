@@ -33,7 +33,7 @@ javascript:(function() {
 
 /*
 In summary, this code iterates over all elements on a webpage, sets the overflow
-CSS property of each element to 'inherit', and then removes any element whose
+CSS property of each element to inherit, and then removes any element whose
 computed zIndex value is greater than 0. The purpose of this code seems to be
 removing elements that have a non-zero zIndex, possibly for the purpose of
 decluttering the page or modifying its appearance.*/
