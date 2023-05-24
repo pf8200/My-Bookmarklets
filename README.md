@@ -2,6 +2,101 @@
 
 Os [bookmarklets](https://pt.wikipedia.org/wiki/Bookmarklet) são bookmarks (marcadores) que incorporam javascript, quando você clica no marcador, o javascript é executado no contexto da página carregada no momento. O que isso significa é que em um browser (navegador) moderno, os bookmarklets podem ser usados para modificar páginas, analisar sua estrutura e fazer uma série de outras coisas úteis e interessantes.
 
+## adblock
+
+```javascript
+javascript:(function()%7BArray.from(document.querySelectorAll('*')).map(ele %3D> %7Bele.style.overflow %3D 'inherit'%3BgetComputedStyle(ele).zIndex>0 %3F ele.remove() %3A null%7D)%7D)()
+
+// commented version
+
+// This code is wrapped inside an immediately-invoked function expression (IIFE),
+// which ensures that the variables used within the code don't conflict with
+// variables in the global scope.
+
+javascript:(function() {
+  // Select all elements on the page using the '*' selector and convert the
+  // NodeList into an array using Array.from().
+  Array.from(document.querySelectorAll('*')).map(ele => {
+    // Set the 'overflow' CSS property of each element to 'inherit'.
+    ele.style.overflow = 'inherit';
+
+    // Check if the computed value of the 'zIndex' CSS property is greater than 0.
+    if (getComputedStyle(ele).zIndex > 0) {
+      // If the condition is true, remove the element from the DOM.
+      ele.remove();
+    } else {
+      // If the condition is false, do nothing.
+      return null;
+    }
+  })
+})()
+
+/*
+In summary, this code iterates over all elements on a webpage, sets the overflow CSS property of each element to 'inherit', and then removes any element whose computed zIndex value is greater than 0. The purpose of this code seems to be removing elements that have a non-zero zIndex, possibly for the purpose of decluttering the page or modifying its appearance.*/
+```
+
+
+## Beautify a JSON page
+
+Beautifies a JSON page, for example from an API response.
+
+```js
+javascript: !(() => {
+  document.querySelector("pre").innerText = JSON.stringify(
+    JSON.parse(document.querySelector("pre").innerText),
+    null,
+    2
+  );
+})();
+
+// commented version
+
+// This is a bookmarklet, indicated by the "javascript:" prefix.
+// The code is wrapped inside an immediately-invoked arrow function expression.
+
+javascript: !(() => {
+  // Select the first <pre> element on the page and retrieve its inner text.
+  // The assumption is that the <pre> element contains valid JSON data.
+  const preElement = document.querySelector("pre");
+
+  // Parse the inner text of the <pre> element as JSON and then stringify it
+  // again with indentation of 2 spaces using JSON.stringify.
+  const jsonString = JSON.stringify(
+    JSON.parse(preElement.innerText),
+    null,
+    2
+  );
+
+  // Update the inner text of the <pre> element with the new stringified JSON.
+  preElement.innerText = jsonString;
+})();
+
+/*
+In summary, this code aims to prettify JSON data within the first <pre> element found on a webpage. It parses the inner text of the <pre> element as JSON, formats it with indentation of 2 spaces using JSON.stringify, and then updates the inner text of the <pre> element with the prettified JSON.
+
+Note that this code assumes that there is at least one <pre> element on the page, and that its inner text contains valid JSON.
+*/
+```
+
+
+## Copy SD Styles
+
+> `https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference`
+
+```javascript
+javascript: tags = [];
+document.querySelectorAll("th").forEach(function (x) {
+  tags.push(x.textContent);
+});
+navigator.clipboard.writeText(tags.join(", ")).then(
+  function () {},
+  function (err) {
+    alert(tags.join(", "));
+    console.error("Async: Could not copy text: ", err);
+  }
+);
+```
+
 ## IMDB
 
 `https://www.imdb.com/title/tt0325805`
@@ -285,25 +380,13 @@ javascript:(function(){;!function(e)%7Bvar t=%7B%7D;function n(a)%7Bif(t%5Ba%5D)
 javascript:var t=((window.getSelection&&window.getSelection())||(document.getSelection&&document.getSelection())||(document.selection&&document.selection.createRange&&document.selection.createRange().text));var e=(document.charset||document.characterSet);if(t!=''){location.href='http://translate.google.com/translate_t?text=%27+t+%27&hl=en&langpair=auto|pt&tbb=1&ie=%27+e;}else{location.href=%27http://translate.google.com/translate?u=%27+escape(location.href)+%27&hl=en&langpair=auto|pt&tbb=1&ie=%27+e;};
 ```
 
-## adblock
-
-```javascript
-javascript:(function()%7BArray.from(document.querySelectorAll('*')).map(ele %3D> %7Bele.style.overflow %3D 'inherit'%3BgetComputedStyle(ele).zIndex>0 %3F ele.remove() %3A null%7D)%7D)()
-```
-
 ## Gmail
 
 ```javascript
 javascript:(function(){m='http://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su=%27+encodeURIComponent(document.title)+%27&body=%27+encodeURIComponent(document.location);w=window.open(m,%27addwindow%27,%27status=no,toolbar=no,width=575,height=545,resizable=yes%27);setTimeout(function(){w.focus();},%20250);})();
 ```
 
-## Copy SD Styles
 
-> `https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference`
-
-```javascript
-javascript:tags=[];document.querySelectorAll('th').forEach(function(x){tags.push(x.textContent);});navigator.clipboard.writeText(tags.join(", ")).then(function() {}, function(err) {alert(tags.join(", "));console.error('Async: Could not copy text: ', err);});
-```
 
 ## Copy Tags Anime
 
@@ -319,13 +402,7 @@ javascript:skip=["censor", "request", "dark skin", "dark-skin", "tanline", "cum"
 javascript:(function() {  var blacklist = ["the", "of", "and", "a", "to", "in", "that", "is", "for", "it", "with", "was", "as", "by", "on", "not", "at", "but", "be", "this", "from", "which", "or", "have", "you", "an", "they", "her", "she", "him", "he", "we", "our", "us", "its", "their", "them"];  var text = document.body.innerText.toLowerCase().replace(/[\n\r]+/g, " "); var words = text.match(/\b\w+\b/g);  var counts = {};  words.forEach(function(word) { if(word.length >= 5 && !blacklist.includes(word)) { counts[word] = (counts[word] || 0) + 1;}});  var sorted = Object.keys(counts).sort(function(a, b) { return counts[b] - counts[a];  }); var html = "<h3>Word Frequency:</h3><ul>"; sorted.forEach(function(word) {    html += "<li>" + word + ": " + counts[word] + "</li>";  }); html += "</ul>"; var popup = window.open("", "Word Frequency Count", "width=420,height=600"); popup.document.write(html);})();
 ```
 
-## Beautify a JSON page
 
-Beautifies a JSON page, for example from an API response.
-
-```js
-javascript: !(() => {document.querySelector("pre").innerText = JSON.stringify(JSON.parse(document.querySelector("pre").innerText), null, 2)})()
-```
 
 ## Show internal and external links
 
@@ -431,7 +508,7 @@ Stop editing the page
 javascript: document.body.contentEditable = 'false';document.designMode = 'off';void 0
 ```
 
-## H2 Tags na Consola
+## HTML Tags na Consola
 
 ```javascript
 javascript:(function() {
@@ -441,5 +518,4 @@ javascript:(function() {
   }
   console.log('Total <h2> tags:', h2Tags.length);
 })();
-
 ```
