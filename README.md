@@ -4,11 +4,16 @@ Os [bookmarklets](https://pt.wikipedia.org/wiki/Bookmarklet) são bookmarks (mar
 
 ## adblock
 
+In summary, this code iterates over all elements on a webpage, sets the overflow
+CSS property of each element to inherit, and then removes any element whose
+computed zIndex value is greater than 0. The purpose of this code seems to be
+removing elements that have a non-zero zIndex, possibly for the purpose of
+decluttering the page or modifying its appearance.
+
 ```javascript
 javascript:(function()%7BArray.from(document.querySelectorAll('*')).map(ele %3D> %7Bele.style.overflow %3D 'inherit'%3BgetComputedStyle(ele).zIndex>0 %3F ele.remove() %3A null%7D)%7D)()
 
 // commented version
-
 // This code is wrapped inside an immediately-invoked function expression (IIFE),
 // which ensures that the variables used within the code dont conflict with
 // variables in the global scope.
@@ -30,13 +35,6 @@ javascript:(function() {
     }
   })
 })()
-
-/*
-In summary, this code iterates over all elements on a webpage, sets the overflow
-CSS property of each element to inherit, and then removes any element whose
-computed zIndex value is greater than 0. The purpose of this code seems to be
-removing elements that have a non-zero zIndex, possibly for the purpose of
-decluttering the page or modifying its appearance.*/
 ```
 
 
