@@ -20,7 +20,7 @@ javascript: (function () {
     "span.sc-bde20123-1.iZlgcd"
   ).innerText;
   elements.sinopse = document.querySelector(
-    "p > span.sc-5f699a2-0.kcphyk"
+    "p > span.sc-2eb29e65-0.hOntMS"
   ).innerText;
   elements.genre = Array.from(
     document.querySelectorAll("div.ipc-chip-list__scroller > a")
