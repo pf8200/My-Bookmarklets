@@ -10,7 +10,7 @@ javascript:(function()%7BArray.from(document.querySelectorAll('*')).map(ele %3D>
 // commented version
 
 // This code is wrapped inside an immediately-invoked function expression (IIFE),
-// which ensures that the variables used within the code don't conflict with
+// which ensures that the variables used within the code dont conflict with
 // variables in the global scope.
 
 javascript:(function() {
@@ -32,7 +32,11 @@ javascript:(function() {
 })()
 
 /*
-In summary, this code iterates over all elements on a webpage, sets the overflow CSS property of each element to 'inherit', and then removes any element whose computed zIndex value is greater than 0. The purpose of this code seems to be removing elements that have a non-zero zIndex, possibly for the purpose of decluttering the page or modifying its appearance.*/
+In summary, this code iterates over all elements on a webpage, sets the overflow
+CSS property of each element to 'inherit', and then removes any element whose
+computed zIndex value is greater than 0. The purpose of this code seems to be
+removing elements that have a non-zero zIndex, possibly for the purpose of
+decluttering the page or modifying its appearance.*/
 ```
 
 
@@ -72,9 +76,13 @@ javascript: !(() => {
 })();
 
 /*
-In summary, this code aims to prettify JSON data within the first <pre> element found on a webpage. It parses the inner text of the <pre> element as JSON, formats it with indentation of 2 spaces using JSON.stringify, and then updates the inner text of the <pre> element with the prettified JSON.
+In summary, this code aims to prettify JSON data within the first <pre> element
+found on a webpage. It parses the inner text of the <pre> element as JSON,
+formats it with indentation of 2 spaces using JSON.stringify, and then updates
+the inner text of the <pre> element with the prettified JSON.
 
-Note that this code assumes that there is at least one <pre> element on the page, and that its inner text contains valid JSON.
+Note that this code assumes that there is at least one <pre> element on the
+page, and that its inner text contains valid JSON.
 */
 ```
 
