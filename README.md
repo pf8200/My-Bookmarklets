@@ -219,6 +219,8 @@ javascript:n='';for(i=0;i%3Cdocument.images.length;i%2B%2B)%7Bn%2B='%3Cimg%20src
 
 ## Show tooltips for link destinations
 
+Adds tooltips to every link element so that when hovered they show the link destination in the tooltip.
+
 ```javascript
 javascript: (function () {  function insertcss() {    var t = document.createElement("STYLE");    (t.innerHTML =      '.qtip{display:inline-block;position:relative;cursor:pointer;border-bottom:.05em dotted #3bb4e5;box-sizing:border-box;font-style:normal;transition:all%20.25s%20ease-in-out}.qtip:hover{color:#069;border-bottom:.05em%20dotted%20#069}.qtip:before{background:rgba(0,0,0,.85);box-shadow:0%201px%203px%20rgba(0,0,0,.3);text-shadow:1px%201px%201px%20rgba(0,0,0,.5)}.dark-mode%20.qtip:before{background:rgba(87,87,87,.5);box-shadow:0%201px%203px%20rgba(219,219,219,.3);text-shadow:0%200%203px%20rgba(255,255,255,.5)}.qtip{--tooltip-color:rgba(0,%200,%200,%200.85)}.qtip{--tooltip-color:rgba(87,%2087,%2087,%200.5)}.qtip:before{content:attr(data-tip);font-size:14px;position:absolute;color:#fff;line-height:1.2em;padding:.5em;font-style:normal;min-width:120px;text-align:center;opacity:0;visibility:hidden;transition:all%20.3s%20ease-in-out;font-family:sans-serif;letter-spacing:0;font-weight:600}.qtip:after{width:0;height:0;border-style:solid;content:%22%22;position:absolute;opacity:0;visibility:hidden;transition:all%20.3s%20ease-in-out}.qtip:hover:after,.qtip:hover:before{visibility:visible;opacity:1}.qtip.tip-top:before{top:0;left:50%;transform:translate(-50%,calc(-100%%20-%208px));box-sizing:border-box;border-radius:3px}.qtip.tip-top:after{border-width:8px%208px%200%208px;border-color:var(--tooltip-color)%20transparent%20transparent%20transparent;top:-8px;left:50%;transform:translate(-50%,0)}.qtip.tip-bottom:before{bottom:0;left:50%;transform:translate(-50%,calc(100%%20+%208px));box-sizing:border-box;border-radius:3px}.qtip.tip-bottom:after{border-width:0%208px%208px%208px;border-color:transparent%20transparent%20var(--tooltip-color)%20transparent;bottom:-8px;left:50%;transform:translate(-50%,0)}.qtip.tip-left:before{left:0;top:50%;transform:translate(calc(-100%%20-%208px),-50%);box-sizing:border-box;border-radius:3px}.qtip.tip-left:after{border-width:8px%200%208px%208px;border-color:transparent%20transparent%20transparent%20var(--tooltip-color);left:-8px;top:50%;transform:translate(0,-50%)}.qtip.tip-right:before{right:0;top:50%;transform:translate(calc(100%%20+%208px),-50%);box-sizing:border-box;border-radius:3px}.qtip.tip-right:after{border-width:8px%208px%208px%200;border-color:transparent%20var(--tooltip-color)%20transparent%20transparent;right:-8px;top:50%;transform:translate(0,-50%)}'),%20%20%20%20%20%20document.body.appendChild(t);%20%20}%20%20function%20replacelinks()%20{%20%20%20%20for%20(var%20t%20=%20document.querySelectorAll(%22a%22),%20r%20=%200;%20r%20%3C%20t.length;%20r++)%20{%20%20%20%20%20%20var%20o%20=%20t[r].innerHTML,%20%20%20%20%20%20%20%20e%20=%20t[r].getAttribute(%22href%22);%20%20%20%20%20%20t[r].innerHTML%20=%20%60%3Ci%20class=%22qtip%20tip-top%22%20data-tip=%22${e}%22%3E${o}%3C/i%3E%60;%20%20%20%20}%20%20}%20%20insertcss();%20%20replacelinks();})();
 ```
@@ -315,6 +317,118 @@ javascript:skip=["censor", "request", "dark skin", "dark-skin", "tanline", "cum"
 
 ```javascript
 javascript:(function() {  var blacklist = ["the", "of", "and", "a", "to", "in", "that", "is", "for", "it", "with", "was", "as", "by", "on", "not", "at", "but", "be", "this", "from", "which", "or", "have", "you", "an", "they", "her", "she", "him", "he", "we", "our", "us", "its", "their", "them"];  var text = document.body.innerText.toLowerCase().replace(/[\n\r]+/g, " "); var words = text.match(/\b\w+\b/g);  var counts = {};  words.forEach(function(word) { if(word.length >= 5 && !blacklist.includes(word)) { counts[word] = (counts[word] || 0) + 1;}});  var sorted = Object.keys(counts).sort(function(a, b) { return counts[b] - counts[a];  }); var html = "<h3>Word Frequency:</h3><ul>"; sorted.forEach(function(word) {    html += "<li>" + word + ": " + counts[word] + "</li>";  }); html += "</ul>"; var popup = window.open("", "Word Frequency Count", "width=420,height=600"); popup.document.write(html);})();
+```
+
+## Beautify a JSON page
+
+Beautifies a JSON page, for example from an API response.
+
+```js
+javascript: !(() => {document.querySelector("pre").innerText = JSON.stringify(JSON.parse(document.querySelector("pre").innerText), null, 2)})()
+```
+
+## Show internal and external links
+
+Highlights internal and external links, external: blue, red: internal, orange: the same URL
+
+```js
+javascript:!function(){var n,t;for(n=0;t=document.links[n];++n)t.style.color=["blue","red","orange"][e(t,location)];function e(n,t){return n.hostname!=t.hostname?0:a(n.pathname)!=a(t.pathname)||n.search!=t.search?1:2}function a(n){return(n=("/"==n.charAt(0)?"":"/")+n).split("?")[0]}}();
+```
+
+## List all links
+
+Lists all links on the current page in a new popup window
+
+```js
+javascript:WN7z=open('','Z6','width=400,height=200,scrollbars,resizable,menubar');DL5e=document.links;with(WN7z.document){write('<base target=_blank>');for(lKi=0;lKi<DL5e.length;lKi++){write(DL5e[lKi].toString().link(DL5e[lKi])+'<br><br>')};void(close())}
+```
+
+## Load script
+
+Loads a script from a URL into the current page
+
+```js
+javascript:{  let s = document.createElement("script");  s.src = prompt("Script location:");  document.body.appendChild(s);}
+```
+
+
+## Open all links
+
+Opens all links on the page after prompting
+
+```js
+javascript:(function(){var n_to_open,dl,dll,i; function linkIsSafe(u) { if (u.substr(0,7)=='mailto:') return false; if (u.substr(0,11)=='javascript:') return false; return true; } n_to_open = 0; dl = document.links; dll = dl.length; for(i = 0; i < dll; ++i) { if (linkIsSafe(dl[i].href)) ++n_to_open; } if (!n_to_open) alert ('no links'); else { if (confirm('Open ' + n_to_open + ' links in new windows?')) for (i = 0; i < dll; ++i) if (linkIsSafe(dl[i].href)) window.open(dl[i].href); } })();
+```
+
+## Open in WayBack machine
+
+Opens the current page in the wayback machine
+
+```js
+javascript: void(location.href = 'http://web.archive.org/web/' + location.href);
+```
+
+## Open repo in website
+Opens the current GitHub repo in its username.github.io/repo counterpart
+```js
+javascript:(() => {    let gh = window.location.href.match(/(?:http|https)+:\/\/github\.com\/([^\.\/]+)\/([^\.\/]+)(?:.+)?/);    window.location.href = `https://${gh[1]}.github.io/${gh[2]}`;})();
+```
+
+
+## Remove colors
+Removes most colors from the current page allow much better readability
+```js
+javascript: (function() {var newSS, styles = '* { background: white ! important; color: black !important } :link, :link * { color: #0000EE !important } :visited, :visited * { color: #551A8B !important }';if (document.createStyleSheet) {document.createStyleSheet("javascript:'" + styles + "'");} else {newSS = document.createElement('link');newSS.rel = 'stylesheet';newSS.href = 'data:text/css,' + escape(styles);document.getElementsByTagName("head")[0].appendChild(newSS);}})();
+```
+
+## Search site
+Search the current site for a search term using google's site: keyword
+```js
+javascript:(function(){  window.location.href = 'https://google.com/search?q=site:' + new URL(window.location.href).hostname +  ' ' + prompt('What are you searching for?');})();
+```
+
+## Speed up video
+Constantly tries to speed up the currently playing video.
+```js
+javascript:setInterval(() => document.querySelector("video").playbackRate = (window.speed || (window.speed = +prompt("New speed", 10))), 50)
+```
+
+## Split horizantally
+Split the current page horizantally
+```js
+javascript:document.write('<HTML><HEAD></HEAD><FRAMESET ROWS=\'50%,*\'><FRAME SRC=' + location.href + '><FRAME SRC=' + location.href + '></FRAMESET></HTML>');document.close();
+```
+
+## Split vertically
+Split the current page vertically
+```js
+javascript:document.write('<HTML><HEAD></HEAD><FRAMESET COLS=\'50%,*\'><FRAME SRC=' + location.href + '><FRAME SRC=' + location.href + '></FRAMESET></HTML>')
+```
+
+## View passwords
+View all passwords in forms on the current page
+```js
+javascript: (function() {var s, F, j, f, i;s = "";F = document.forms;for (j = 0; j < F.length; ++j) {f = F[j];for (i = 0; i < f.length; ++i) {if (f[i].type.toLowerCase() == "password") s += f[i].value + "\n";}}if (s) alert("Passwords in forms on this page:\n\n" + s);else alert("There are no passwords in forms on this page.");})();
+```
+
+## Headers
+Print headers on the response to the current page in the console
+```js
+javascript:fetch(location.href).then(r => Object.fromEntries(r.headers.entries())).then(console.table)
+```
+
+## Make page editable
+Make the page editable
+
+```js
+javascript: document.body.contentEditable = 'true';document.designMode = 'on';void 0
+```
+
+## Stop page editing
+Stop editing the page
+
+```js
+javascript: document.body.contentEditable = 'false';document.designMode = 'off';void 0
 ```
 
 ##
