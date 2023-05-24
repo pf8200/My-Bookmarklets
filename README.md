@@ -13,12 +13,10 @@ decluttering the page or modifying its appearance.
 ```javascript
 javascript:(function()%7BArray.from(document.querySelectorAll('*')).map(ele %3D> %7Bele.style.overflow %3D 'inherit'%3BgetComputedStyle(ele).zIndex>0 %3F ele.remove() %3A null%7D)%7D)()
 
-// commented version
-// This code is wrapped inside an immediately-invoked function expression (IIFE),
-// which ensures that the variables used within the code dont conflict with
-// variables in the global scope.
-
 javascript:(function() {
+  // This code is wrapped inside an immediately-invoked function expression (IIFE),
+  // which ensures that the variables used within the code dont conflict with
+  // variables in the global scope.
   // Select all elements on the page using the '*' selector and convert the
   // NodeList into an array using Array.from().
   Array.from(document.querySelectorAll('*')).map(ele => {
@@ -51,7 +49,6 @@ javascript: !(() => {
   );
 })();
 
-// commented version
 
 // This is a bookmarklet, indicated by the "javascript:" prefix.
 // The code is wrapped inside an immediately-invoked arrow function expression.
