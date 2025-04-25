@@ -380,7 +380,7 @@ javascript:(function(){;!function(e)%7Bvar t=%7B%7D;function n(a)%7Bif(t%5Ba%5D)
 ## Google Translate
 
 ```javascript
-javascript:var t=((window.getSelection&&window.getSelection())||(document.getSelection&&document.getSelection())||(document.selection&&document.selection.createRange&&document.selection.createRange().text));var e=(document.charset||document.characterSet);if(t!=''){location.href='http://translate.google.com/translate_t?text=%27+t+%27&hl=en&langpair=auto|pt&tbb=1&ie=%27+e;}else{location.href=%27http://translate.google.com/translate?u=%27+escape(location.href)+%27&hl=en&langpair=auto|pt&tbb=1&ie=%27+e;};
+javascript:(function(){    var selectedText = window.getSelection().toString().trim();    if (selectedText) {        var url = "https://translate.google.com/#view=home&op=translate&sl=en&tl=pt-PT&text=" + encodeURIComponent(selectedText);        window.open(url, '_blank');    } else {        if (confirm("Este irá traduzir a página inteira para português (Portugal) usando o Google Tradutor. Continuar?")) {            var currentUrl = window.location.href;            var translateUrl = "https://translate.google.com/translate?sl=en&tl=pt-PT&u=" + encodeURIComponent(currentUrl);            window.location.href = translateUrl;        }    }})();
 ```
 
 ## Gmail
